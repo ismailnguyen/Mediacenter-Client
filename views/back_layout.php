@@ -5,6 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Mummy Center</title>
+		<link rel="shortcut icon" href="resources/images/logo.ico" type="image/x-icon">
+		<link rel="icon" href="resources/images/logofavicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="styles/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="styles/bootstrap.css" />
 		<link rel="stylesheet" type="text/css" href="styles/back_style.css" />	
