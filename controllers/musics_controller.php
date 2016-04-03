@@ -1,5 +1,5 @@
 <?php
-	require_once 'repository/mock/music_repository.php';
+	require_once 'repositories/mock/music_repository.php';
 	
 	class MusicsController {
 		
@@ -18,14 +18,14 @@
 			require_once('views/pages/musics/index.php');
 		}
 		
-		public function album() {
-			if (isset($_GET["n"])) {
-				$albumKey = $_GET["n"];
+		public function listen() {
+			if (isset($_GET["u"])) {
+				$uuid = $_GET["u"];
 			
 				$albums = $this->musicRepository->getAlbums();
 			
 				header('Content-Type: application/json');
-				echo json_encode($albums[$albumKey]);
+				echo json_encode($albums[$uuid]);
 			}
 		}
 	}

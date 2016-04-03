@@ -1,11 +1,19 @@
 <?php
+	require_once 'repositories/mock/account_repository.php';
+
 	class AccountsController {
+		
+		private $accountRepository;
+		
+		public function __construct() {
+			$this->accountRepository = new AccountRepository();
+		}
 				
 		public function index() {
 			if (!isset($_SESSION['token']))
 				redirect('accounts', 'login');		
 			
-			$account = new Account("Ismail", "NGUYEN");
+			$account = $this->accountRepository->getAccount();
 
 			require_once('views/pages/accounts/index.php');
 		}
@@ -32,6 +40,12 @@
 			$account = new Account("Ismail", "NGUYEN");
 			
 			require_once('views/pages/accounts/settings.php');
+		}
+		
+		public function search() {
+			if (isset($_GET["q"])) {
+				
+			}
 		}
 		
 		public function logout() {
