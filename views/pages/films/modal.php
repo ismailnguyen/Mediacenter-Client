@@ -1,24 +1,65 @@
-<div id="overviewModal" class="modal modal-fullscreen fade" role="dialog" data-easein="shrinkIn">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="modal-title" id="album_title">title</h1>
+<div class="cd-modal">
+	<div class="cd-modal-content">
+		<h1 id="film_title"></h1>
+		<p>
+			<div id="jp_container" class="jp-video jp-video-270p">
+				<div class="jp-type-playlist">
+					<div id="jquery_jplayer" class="jp-jplayer"></div>
+					<div class="jp-gui">
+					
+						<div class="jp-video-play">
+							<a href="javascript:;" class="jp-video-play-icon" tabindex="1">play</a>
+						</div>
+						<div class="jp-interface">
+							<div class="jp-controls-holder">
+								<ul class="jp-controls">
+									<li><a href="javascript:;" class="jp-previous" tabindex="1">previous</a></li>
+									<li><a href="javascript:;" class="jp-play" tabindex="1">play</a></li>
+									<li><a href="javascript:;" class="jp-pause" tabindex="1">pause</a></li>
+									<li><a href="javascript:;" class="jp-next" tabindex="1">next</a></li>
+									<li><a href="javascript:;" class="jp-stop" tabindex="1">stop</a></li>
+									<li><a href="javascript:;" class="jp-mute" tabindex="1" title="mute">mute</a></li>
+									<li><a href="javascript:;" class="jp-unmute" tabindex="1" title="unmute">unmute</a></li>
+									<li><a href="javascript:;" class="jp-volume-max" tabindex="1" title="max volume">max volume</a></li>
+								</ul>
+								<div class="jp-volume-bar">
+									<div class="jp-volume-bar-value"></div>
+								</div>
+								<ul class="jp-toggles">
+									<li><a href="javascript:;" class="jp-full-screen" tabindex="1" title="full screen">full screen</a></li>
+									<li><a href="javascript:;" class="jp-restore-screen" tabindex="1" title="restore screen">restore screen</a></li>
+									<li><a href="javascript:;" class="jp-shuffle" tabindex="1" title="shuffle">shuffle</a></li>
+									<li><a href="javascript:;" class="jp-shuffle-off" tabindex="1" title="shuffle off">shuffle off</a></li>
+									<li><a href="javascript:;" class="jp-repeat" tabindex="1" title="repeat">repeat</a></li>
+									<li><a href="javascript:;" class="jp-repeat-off" tabindex="1" title="repeat off">repeat off</a></li>
+								</ul>
+							</div>
+							<div class="jp-progress">
+								<div class="jp-seek-bar">
+									<div class="jp-play-bar"></div>
+								</div>
+							</div>
+							<div class="jp-current-time"></div>
+							<div class="jp-duration"></div>
+							<div class="jp-title">
+								<ul>
+									<li></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="jp-playlist">
+						<ul>
+							<!-- The method Playlist.displayPlaylist() uses this unordered list -->
+							<li></li>
+						</ul>
+					</div>
+					<div class="jp-no-solution">
+						<span>Update Required</span>
+						To play the media you will need to either update your browser to a recent version or update your <a href="http://get.adobe.com/flashplayer/" target="_blank">Flash plugin</a>.
+					</div>
+				</div>
 			</div>
-			
-			<div class="modal-body">
-				<h2>1. Modal sub-title</h2>
-
-	<p>Liquor ipsum dolor sit
-	es beefeater kalimotxo royal arrival jack rose. Cutty sark scots whisky b & b harper's fi
-	nlandia agent orange pink lady three wise men gin fizz murphy's. Chartreuse french 75 brandy 
-	daisy widow's cork 7 crown ketel one captain morgan fleischmann's, hayride, edradour godfathe
-	r. Long island iced tea choking hazard black b
-	ison, greyhound harvey wallbanger, "gibbon kir royale salty dog tonic and tequila."</p>
-			</div>
-			
-			<div class="modal-footer">
-				<button type="submit" class="btn" data-toggle="close">Sign in!</button>
-			</div>
-		</div>
+		</p>
 	</div>
 </div>

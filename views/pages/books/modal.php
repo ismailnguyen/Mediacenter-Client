@@ -1,24 +1,16 @@
-<div id="overviewModal" class="modal modal-fullscreen fade" role="dialog" data-easein="shrinkIn">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h1 class="modal-title" id="album_title">title</h1>
-			</div>
-			
-			<div class="modal-body">
-				<h2>1. Modal sub-title</h2>
+<div class="cd-modal">
+	<div class="cd-modal-content">
+		<h1 id="book_title"></h1>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
+		</p>
 
-	<p>Liquor ipsum dolor sit
-	es beefeater kalimotxo royal arrival jack rose. Cutty sark scots whisky b & b harper's fi
-	nlandia agent orange pink lady three wise men gin fizz murphy's. Chartreuse french 75 brandy 
-	daisy widow's cork 7 crown ketel one captain morgan fleischmann's, hayride, edradour godfathe
-	r. Long island iced tea choking hazard black b
-	ison, greyhound harvey wallbanger, "gibbon kir royale salty dog tonic and tequila."</p>
-			</div>
-			
-			<div class="modal-footer">
-				<button type="submit" class="btn" data-toggle="close">Sign in!</button>
-			</div>
-		</div>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
+		</p>
+
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad modi repellendus, optio eveniet eligendi molestiae? Fugiat, temporibus! A rerum pariatur neque laborum earum, illum voluptatibus eum voluptatem fugiat, porro animi tempora? Sit harum nulla, nesciunt molestias, iusto aliquam aperiam est qui possimus reprehenderit ipsam ea aut assumenda inventore iste! Animi quaerat facere repudiandae earum quisquam accusamus tempora, delectus nesciunt, provident quae aliquam, voluptatum beatae quis similique in maiores repellat eligendi voluptas veniam optio illum vero! Eius, dignissimos esse eligendi veniam.
+		</p>
 	</div>
 </div>

@@ -56,6 +56,7 @@
 								'register',
 								'forgot',
 								'settings',
+								'search',
 								'logout'
 								],
 								
@@ -63,7 +64,7 @@
 							=> [
 								'index',
 								'create',
-								'read',
+								'watch',
 								'update',
 								'delete'
 								],
@@ -72,7 +73,7 @@
 							=> [
 								'index',
 								'create',
-								'read',
+								'listen',
 								'update',
 								'delete',
 								'album'

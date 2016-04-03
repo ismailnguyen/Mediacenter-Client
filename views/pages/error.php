@@ -3,7 +3,7 @@
 	
 	<div class="row">
 		<p>An error has occurred ...</p>
-		<p class="m_2"><a href="/">Go back home</a></p>
+		<p class="m_2"><a href="./">Go back home</a></p>
 	</div>
 	<div class="clearfix"></div>
 </div>

@@ -1,37 +1,92 @@
 <div class="row">
-	<?php require_once 'views/pages/musics/modal.php'; ?>
-</div>
+	<section class="cd-section">
 
-<div class="row">
-	<div id="grid" data-columns>
+		<div id="grid" data-columns>
 		
-		<?php
-			foreach($albums as $key => $album) {
-		?>
-		
-		<div class="grid-element" id="<?php echo $key; ?>">
-			<div class="element-title"><?php echo $album[0]->album; ?></div>
-			<a href="#">
-				 <img src="<?php echo $album[0]->image; ?>" class="thumbnail img-responsive">
-			</a>
+			<?php
+				foreach($albums as $key => $album) {
+			?>
+			
+			<div class="grid-element" data-type="modal-trigger" id="<?php echo $key; ?>">
+				<a href="#">
+					 <img src="<?php echo $album[0]->image; ?>" class="thumbnail img-responsive">
+				</a>
+				
+				<div class="cd-modal-action">
+					<a href="#0" class="btn"><?php echo $album[0]->album; ?></a>
+					<span class="cd-modal-bg"></span>  
+				</div>
+
+			</div>
+
+			<?php
+				}
+			?>
+			
 		</div>
 		
-		<?php
-			}
-		?>
-	</div>
+		<?php require_once 'views/pages/musics/modal.php'; ?>
+
+		<a href="#0" class="cd-modal-close">Close</a>
+	</section>
 </div>
  
 <script>
+	var playlist;
+	
+	$(document).ready(function () {
+		
+		playlist = new jPlayerPlaylist({
+				jPlayer: "#jquery_jplayer",
+				cssSelectorAncestor: "#jp_container"
+			},
+			[],
+			{
+				swfPath: "../../dist/jplayer",
+				supplied: "oga, mp3",
+				wmode: "window",
+				useStateClassSkin: true,
+				autoBlur: false,
+				smoothPlayBar: true,
+				keyEnabled: true
+			});
+				
+		$(document.documentElement).keydown(function(event) {
+			if(event.which === 32) {
+				if($(".jp-jplayer").data("jPlayer").status.paused){
+				   $(".jp-jplayer").jPlayer("play");
+				}else{
+				   $(".jp-jplayer").jPlayer("pause");
+				}
+				event.preventDefault();
+			}
+		});
+	});
+	
 	// Launch modal popup on click event
 	// Retrieve musics of selected album with ajax callback
-	$(".grid-element").click(function () {
-		$.get("?", { controller: "musics", action: "album", json: "", n: $(this).attr("id") })
-		.done(function (data) {
-			$("#album_title").text(data[0].album);
+	function updateModal(id) {
+		$.get("?", { controller: "musics", action: "listen", json: "", u: id })
+		.done(function (album) {
+			
+			$("#album_title").text(album[0].album);
+			$("#album_author").text(album[0].author);
+			$("#album_publication").text(album[0].publication);
+			$("#album_image").text(album[0].image);
+			$("#album_genre").text(album[0].genre);
+			
+			var musics = [];
+			
+			$.each(album, function (index, music) {
+				musics.push({ 
+					title: music.title,
+					mp3: music.path,
+					poster: music.image
+				});
+			});
+			
+			playlist.setPlaylist(musics);
+	
 		}, "json");
-		
-		$("#overviewModal").modal("toggle");
-	});
-</script>
-  
+	}
+</script>  
