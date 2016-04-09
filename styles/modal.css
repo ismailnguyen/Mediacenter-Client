@@ -43,11 +43,11 @@ html, body {
 .cd-modal {
   color: #ffffff;
   line-height: 1.6;
-  margin: 2em 0;
 }
 
 .modal-is-visible .cd-modal {
   z-index: 1;
+  background: #34383c;
   visibility: visible;
   opacity: 1;
   pointer-events: auto;

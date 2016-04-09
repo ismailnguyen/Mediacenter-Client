@@ -2,21 +2,21 @@
 	<h3>Account</h3>
 	
 	<div class="row">
-		<p>Hi <?php echo $account->name.' '.$account->surname; ?> !</p>
+		<p>Hi <?php echo $account->pseudo; ?> !</p>
 	</div>
 	<div class="clearfix"></div>
 	
-	<h3>Account</h3>
+	<h3>Recents films</h3>
 	
 	<div class="row">
-		<p>Hi <?php echo $account->name.' '.$account->surname; ?> !</p>
+		<p></p>
 	</div>
 	<div class="clearfix"></div>
 	
-	<h3>Account</h3>
+	<h3>Recent musics</h3>
 	
 	<div class="row">
-		<p>Hi <?php echo $account->name.' '.$account->surname; ?> !</p>
+		<p></p>
 	</div>
 	<div class="clearfix"></div>
 </div>

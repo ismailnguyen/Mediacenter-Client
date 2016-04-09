@@ -1,4 +1,4 @@
-<?php
+	<?php
 	require_once 'repositories/mock/account_repository.php';
 
 	class AccountsController {
@@ -6,7 +6,7 @@
 		private $accountRepository;
 		
 		public function __construct() {
-			$this->accountRepository = new AccountRepository();
+			$this->accountRepository = new MockAccountRepository();
 		}
 				
 		public function index() {
