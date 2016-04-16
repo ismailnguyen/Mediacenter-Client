@@ -20,9 +20,8 @@
 		
 		public function login() {
 			if (isset($_POST['login'])) {
-				
-				
-				$_SESSION['token'] = "ismail";
+				$_SESSION['token'] = 
+					$this->accountRepository->login($_POST['email'], $_POST['password']);
 				
 				redirect('accounts');
 			}

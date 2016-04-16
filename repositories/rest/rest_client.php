@@ -124,7 +124,7 @@
 					break;
 					
 				default:
-					$result = new RestException($status, $this->_method, $this->_url, $this->_params);
+					$result = new RestException($status, $this->_method, $this->_url, $this->_params, curl_multi_getcontent($curl));
 			}
 			
 			curl_multi_remove_handle($curl_init, $curl);

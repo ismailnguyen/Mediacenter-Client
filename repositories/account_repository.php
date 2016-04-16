@@ -1,10 +1,34 @@
 <?php
 	require_once 'base_repository.php';
 	
-	class AccountRepository {
+	class AccountRepository extends BaseRepository {
 		
-		public function login() {
+		private $_client = null;
+		
+		public function __construct() {
+			parent::__construct();
 			
+			$this->_client = $this->client->get('users');
+		}
+		
+		public function login($email, $password) {
+			if (!empty($email) && !empty($password)) {
+				$login = $this->_client
+							->get('users/connect')
+							->param('email', $email)
+							->param('password', $password)
+							->run();
+					
+				if ($login != null && !($login instanceof RestException)) {
+					$token = json_decode($login)->token;
+				} else {
+					$token = null;
+				}
+				
+				return $token;
+			}
+			
+			return null;
 		}
 		
 		public function getAccount() {

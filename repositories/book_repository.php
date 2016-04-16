@@ -1,28 +1,41 @@
 <?php
-	class BookRepository {
+	require_once 'base_repository.php';
+	
+	class BookRepository extends BaseRepository {
+		
+		private $_client = null;
+		
+		public function __construct() {
+			parent::__construct();
+			
+			$this->_client = $this->client->get('books');
+		}
 		
 		public function getBooks() {
-			$m = new Book();
-			$m->title = "Diamond";
-			$m->author = "Rihanna";
-			$m->description = "Disturbia";
-			$m->publication = date("Y-m-d H:i:s");
-			$m->image = "http://mariahcareycollection.com/blog/HQ/R/Rihanna/rihanna-disturbia1.png";
-			$m->path = "http://songpk.mobi/dgmob/downloadfile/68029/They_Dont_Care_About_Us_(Michael_Jackson)(www.SongPK.mobi).mp3";
-
-			$n = new Book();
-			$n->title = "Bad";
-			$n->author = "Michael Jackson";
-			$n->description = "Thriller";
-			$n->publication = date("Y-m-d H:i:s");
-			$n->image = "https://upload.wikimedia.org/wikipedia/en/5/55/Michael_Jackson_-_Thriller.png";
-			$n->path = "http://songpk.mobi/dgmob/downloadfile/68029/They_Dont_Care_About_Us_(Michael_Jackson)(www.SongPK.mobi).mp3";
-
+			try {
+				$books = $this->_client
+						->param('token', $_SESSION['token'])
+						->run();
+						
+			return array(json_decode($books));
 			
-			return array(
-							$m,
-							$n
-						);
+			} catch (RestException $e) {
+				echo $e->getStatus();
+			}
+		}
+		
+		public function getBooksByUser($uuid) {
+			try {
+				$books = $this->_client
+						->get('users/books')
+						->param('uuid', $uuid)
+						->run();
+						
+			return array(json_decode($books));
+			
+			} catch (RestException $e) {
+				echo $e->getStatus();
+			}
 		}
 	}
 ?>

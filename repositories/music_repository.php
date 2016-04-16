@@ -27,7 +27,8 @@
 		public function getAlbumsByUser($uuid) {
 			try {
 				$musics = $this->_client
-						->param('token', $_SESSION['token'])
+						->get('users/musics')
+						->param('uuid', $uuid)
 						->run();
 						
 			return array(json_decode($musics));
