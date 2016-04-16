@@ -16,8 +16,10 @@
 				$musics = $this->_client
 						->param('token', $_SESSION['token'])
 						->run();
-						
-			return array(json_decode($musics));
+			
+				return $musics != null && !($musics instanceof RestException)
+						? array(json_decode($musics))
+						: null;
 			
 			} catch (RestException $e) {
 				echo $e->getStatus();
@@ -31,7 +33,9 @@
 						->param('uuid', $uuid)
 						->run();
 						
-			return array(json_decode($musics));
+				return $musics != null && !($musics instanceof RestException)
+						? array(json_decode($musics))
+						: null;
 			
 			} catch (RestException $e) {
 				echo $e->getStatus();

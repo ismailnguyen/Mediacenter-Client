@@ -1,8 +1,12 @@
 <div class="row">
+<?php
+	if ($films == null || empty(array_filter($films))) {
+		echo '<div class="main-board"><h1>Nothing here</h1></div>';
+	} else {
+?>
 	<section class="cd-section">
 
 		<div id="grid" data-columns>
-		
 			<?php
 				foreach($films as $key => $film) {
 			?>
@@ -29,6 +33,9 @@
 
 		<a href="#0" class="cd-modal-close">Close</a>
 	</section>
+<?php
+	}
+?>
 </div>
  
 <script>

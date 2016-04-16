@@ -17,7 +17,9 @@
 						->param('token', $_SESSION['token'])
 						->run();
 						
-			return array(json_decode($books));
+				return $books != null && !($books instanceof RestException)
+						? array(json_decode($books))
+						: null;
 			
 			} catch (RestException $e) {
 				echo $e->getStatus();
@@ -31,7 +33,9 @@
 						->param('uuid', $uuid)
 						->run();
 						
-			return array(json_decode($books));
+				return $books != null && !($books instanceof RestException)
+						? array(json_decode($books))
+						: null;
 			
 			} catch (RestException $e) {
 				echo $e->getStatus();

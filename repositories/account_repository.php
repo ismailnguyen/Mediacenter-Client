@@ -20,12 +20,8 @@
 							->run();
 					
 				if ($login != null && !($login instanceof RestException)) {
-					$token = json_decode($login)->token;
-				} else {
-					$token = null;
+					return json_decode($login)->token;
 				}
-				
-				return $token;
 			}
 			
 			return null;
