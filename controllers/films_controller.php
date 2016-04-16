@@ -1,12 +1,12 @@
 <?php
-	require_once 'repositories/mock/film_repository.php';
+	require_once 'repositories/film_repository.php';
 
 	class FilmsController {
 		
 		private $filmRepository;
 		
 		public function __construct() {
-			$this->filmRepository = new MockFilmRepository();
+			$this->filmRepository = new FilmRepository();
 		}
 		
 		public function index() {

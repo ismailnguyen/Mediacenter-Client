@@ -1,12 +1,12 @@
 <?php
-	require_once 'repositories/mock/book_repository.php';
+	require_once 'repositories/book_repository.php';
 
 	class BooksController {
 		
 		private $bookRepository;
 		
 		public function __construct() {
-			$this->bookRepository = new MockBookRepository();
+			$this->bookRepository = new BookRepository();
 		}
 		
 		public function index() {

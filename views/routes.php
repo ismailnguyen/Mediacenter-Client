@@ -1,5 +1,5 @@
 <?php
-	function redirect($controller, $action='index') {
+	function redirect($controller, $action = 'index') {
 		if (empty($action)) {
 			$action = 'index';
 		}
@@ -7,7 +7,7 @@
 		header('Location: ?controller='.$controller.'&action='.$action);
 	}
 	
-	function call($controller, $action='index') {
+	function call($controller, $action = 'index') {
 		if (empty($action)) {
 			$action = 'index';
 		}

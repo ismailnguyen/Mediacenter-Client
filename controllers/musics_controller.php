@@ -1,12 +1,12 @@
 <?php
-	require_once 'repositories/mock/music_repository.php';
+	require_once 'repositories/music_repository.php';
 	
 	class MusicsController {
 		
 		private $musicRepository;
 		
 		public function __construct() {
-			$this->musicRepository = new MockMusicRepository();
+			$this->musicRepository = new MusicRepository();
 		}
 		
 		public function index() {

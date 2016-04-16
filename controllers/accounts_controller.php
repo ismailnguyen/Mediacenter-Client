@@ -1,12 +1,12 @@
-	<?php
-	require_once 'repositories/mock/account_repository.php';
+<?php
+	require_once 'repositories/account_repository.php';
 
 	class AccountsController {
 		
 		private $accountRepository;
 		
 		public function __construct() {
-			$this->accountRepository = new MockAccountRepository();
+			$this->accountRepository = new AccountRepository();
 		}
 				
 		public function index() {
@@ -20,6 +20,8 @@
 		
 		public function login() {
 			if (isset($_POST['login'])) {
+				
+				
 				$_SESSION['token'] = "ismail";
 				
 				redirect('accounts');
