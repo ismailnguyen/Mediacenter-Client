@@ -8,38 +8,83 @@
 		public function __construct() {
 			parent::__construct();
 			
-			$this->_client = $this->client->get('musics');
+			$this->_client = $this->client
+								->header('token', $_SESSION['user']->token)
+								->header('Content-Type', 'application/json');
 		}
 		
-		public function getAlbums() {
-			try {
-				$musics = $this->_client
-						->param('token', $_SESSION['token'])
-						->run();
-			
-				return $musics != null && !($musics instanceof RestException)
-						? array(json_decode($musics))
-						: null;
-			
-			} catch (RestException $e) {
-				echo $e->getStatus();
+		public function create($title, $author, $album = '', $publication, $image, $path) {
+			if (!empty($title) && !empty($author) && !empty($path)) {
+				
+				if ($publication == null || empty($publication))
+					$publication = date('Y-m-d\TH:i:sP');
+				
+				$music = $this->_client
+							->post('musics')
+							->param(array(
+									'title' => $title,
+									'author' => $author,
+									'album' => $album,
+									'publication' => $publication,
+									'image' => $image,
+									'path' => $path))
+							->run();
+				
+				if ($music != null && !($music instanceof RestException))
+					return true;
 			}
+			
+			return false;
 		}
 		
-		public function getAlbumsByUser($uuid) {
-			try {
+		public function add($uuid) {
+			if (!empty($uuid)) {
+				$music = $this->_client
+							->post('musics/'.$uuid)
+							->run();
+					
+				if ($music != null && !($music instanceof RestException))
+					return true;
+			}
+			
+			return false;
+		}
+		
+		public function delete($uuid) {
+			if (!empty($uuid)) {
+				$music = $this->_client
+							->delete('musics/'.$uuid)
+							->run();
+					
+				if ($music != null && !($music instanceof RestException))
+					return true;
+			}
+			
+			return false;
+		}
+		
+		public function getMusics() {
+			$musics = $this->_client
+						->get('musics')
+						->run();
+				
+			if ($musics != null && !($musics instanceof RestException))
+				return json_decode($musics);
+						
+			return null;
+		}
+		
+		public function getPublicMusics($uuid) {
+			if (!empty($uuid)) {
 				$musics = $this->_client
-						->get('users/musics')
-						->param('uuid', $uuid)
+						->get('users/'.$uuid.'/musics')
 						->run();
 						
-				return $musics != null && !($musics instanceof RestException)
-						? array(json_decode($musics))
-						: null;
-			
-			} catch (RestException $e) {
-				echo $e->getStatus();
+				if ($musics != null && !($musics instanceof RestException))
+						return json_decode($musics);
 			}
+			
+			return null;
 		}
 	}
 ?>

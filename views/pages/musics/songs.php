@@ -34,7 +34,7 @@
 
 <div class="row">
 <?php
-	if ($albums == null || empty(array_filter($albums))) {
+	if ($musics == null || empty(array_filter($musics))) {
 		echo '<div class="main-board"><h1>Nothing here</h1></div>';
 	} else {
 ?>
@@ -43,28 +43,32 @@
 		<div id="grid" data-columns>
 		
 			<?php
-				foreach($albums as $key => $album) {
-					if ($album[0]->image == null || empty($album[0]->image))
-						$album[0]->image = './resources/images/album-cover.jpg';
+				foreach($musics as $key => $music) {
+					if ($music->image == null || empty($music->image))
+						$music->image = './resources/images/album-cover.png';
 			?>
 			
 			<div class="grid-element" data-type="modal-trigger" id="<?php echo $key; ?>">
 				<a href="#">
-					 <img id="album_<?php echo str_replace(' ', '', $album[0]->album); ?>" src="<?php echo $album[0]->image; ?>" class="thumbnail img-responsive">
+					 <img id="album_<?php echo str_replace(' ', '', $music->album); ?>" src="<?php echo $music->image; ?>" class="thumbnail img-responsive">
 				</a>
 				
 				<div class="cd-modal-action">
-					<a href="#0" class="btn"><?php echo $album[0]->album; ?></a>
-					<span class="cd-modal-bg"></span>
-					
-					<?php
-						if (isset($_GET['u'])) {
-							echo '<div align="center">';
-								echo '<button class="button-hover button-add" name="'.$album[0]->album.'" style="display: none;"><p> Fork </p></button>';
-							echo '</div>';
-						}
-					?>
+					<a href="#0" class="btn"><?php echo $music->title; ?></a>
+					<span class="cd-modal-bg"></span>  
 				</div>
+				
+				<?php
+					if (!isset($_GET['u'])) {
+						echo '<div align="center">';
+							echo '<button class="button-hover button-delete" name="'.$music->uuid.'" style="display: none;"><p> Remove </p></button>';
+						echo '</div>';
+					} else {
+						echo '<div align="center">';
+							echo '<button class="button-hover button-add" name="'.$music->uuid.'" style="display: none;"><p> Fork </p></button>';
+						echo '</div>';
+					}
+				?>
 
 			</div>
 
@@ -122,23 +126,21 @@
 	// Launch modal popup on click event
 	// Retrieve musics of selected album with ajax callback
 	function updateModal(id) {
-		$.get("?", { controller: "musics", action: "listen", json: "", album: id <?php echo isset($_GET['u']) ? ", user: '".$_GET['u']."'" : ''; ?> })
-		.done(function (album) {
-			
-			$("#album_title").text(album[0].album);
-			$("#album_author").text(album[0].author);
-			$("#album_publication").text(album[0].publication);
-			$("#album_image").text(album[0].image);
-			$("#album_genre").text(album[0].genre);
+		$.get("?", { controller: "musics", action: "play", json: "", u: id })
+		.done(function (music) {
+
+			$("#album_title").text(music.album);
+			$("#album_author").text(music.author);
+			$("#album_publication").text(music.publication);
+			$("#album_image").text(music.image);
+			$("#album_genre").text(music.genre);
 			
 			var musics = [];
 			
-			$.each(album, function (index, music) {
-				musics.push({ 
-					title: music.title,
-					mp3: music.path,
-					poster: music.image
-				});
+			musics.push({ 
+				title: music.title,
+				mp3: music.path,
+				poster: music.image
 			});
 			
 			playlist.setPlaylist(musics);

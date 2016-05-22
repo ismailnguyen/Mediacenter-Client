@@ -54,38 +54,34 @@
 								'index',
 								'login', 
 								'register',
-								'forgot',
 								'settings',
-								'search',
-								'logout'
+								'logout',
+								'library',
+								'users',
+								'delete'
 								],
 								
 						'films' 
 							=> [
 								'index',
 								'create',
-								'watch',
-								'update',
-								'delete'
+								'watch'
 								],
 						
 						'musics' 
 							=> [
 								'index',
+								'songs',
 								'create',
 								'listen',
-								'update',
-								'delete',
-								'album'
+								'play'
 								],
 						
 						'books' 
 							=> [
 								'index',
 								'create',
-								'read',
-								'update',
-								'delete'
+								'read'
 								]
 					);
 

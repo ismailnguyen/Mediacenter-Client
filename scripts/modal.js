@@ -1,7 +1,7 @@
 jQuery(document).ready(function($){
 	//trigger the animation - open modal window
 	$('[data-type="modal-trigger"]').on('click', function(){
-		updateModal($(this).attr("id"));
+		updateModal($(this).attr('id'));
 		
 		var actionBtn = $(this).find(".btn"),
 			scaleValue = retrieveScale(actionBtn.next('.cd-modal-bg'));

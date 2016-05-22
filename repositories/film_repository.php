@@ -8,38 +8,83 @@
 		public function __construct() {
 			parent::__construct();
 			
-			$this->_client = $this->client->get('films');
+			$this->_client = $this->client
+								->header('token', $_SESSION['user']->token)
+								->header('Content-Type', 'application/json');
+		}
+		
+		public function create($title, $director = '', $description = '', $publication, $image, $path) {
+			if (!empty($title) && !empty($path)) {
+				
+				if ($publication == null || empty($publication))
+					$publication = date('Y-m-d\TH:i:sP');
+				
+				$film = $this->_client
+							->post('films')
+							->param(array(
+									'title' => $title,
+									'director' => $director,
+									'description' => $description,
+									'publication' => $publication,
+									'image' => $image,
+									'path' => $path))
+							->run();
+					
+				if ($film != null && !($film instanceof RestException))
+					return true;
+			}
+			
+			return false;
+		}
+		
+		public function add($uuid) {
+			if (!empty($uuid)) {
+				$film = $this->_client
+							->post('films/'.$uuid)					
+							->run();
+					
+				if ($film != null && !($film instanceof RestException))
+					return true;
+			}
+			
+			return false;
+		}
+		
+		public function delete($uuid) {
+			if (!empty($uuid)) {
+				$film = $this->_client
+							->delete('films/'.$uuid)
+							->run();
+					
+				if ($film != null && !($film instanceof RestException))
+					return true;
+			}
+			
+			return false;
 		}
 		
 		public function getFilms() {
-			try {
-				$films = $this->_client
-						->param('token', $_SESSION['token'])
+			$films = $this->_client
+						->get('films')
 						->run();
 				
-				return $films != null && !($films instanceof RestException)
-						? array(json_decode($films))
-						: null;
-			
-			} catch (RestException $e) {
-				echo $e->getStatus();
-			}
+			if ($films != null && !($films instanceof RestException))
+				return json_decode($films);
+						
+			return null;
 		}
 		
-		public function getFilmsByUser($uuid) {
-			try {
+		public function getPublicFilms($uuid) {
+			if (!empty($uuid)) {
 				$films = $this->_client
-						->get('users/film')
-						->param('uuid', $uuid)
+						->get('users/'.$uuid.'/films')
 						->run();
 						
-				return $films != null && !($films instanceof RestException)
-						? array(json_decode($films))
-						: null;
-			
-			} catch (RestException $e) {
-				echo $e->getStatus();
+				if ($films != null && !($films instanceof RestException))
+						return json_decode($films);		
 			}
+			
+			return null;
 		}
 	}
 ?>

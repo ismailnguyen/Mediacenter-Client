@@ -8,38 +8,84 @@
 		public function __construct() {
 			parent::__construct();
 			
-			$this->_client = $this->client->get('books');
+			$this->_client = $this->client
+								->header('token', $_SESSION['user']->token)
+								->header('Content-Type', 'application/json');
+		}
+		
+		public function create($title, $director, $description, $publication, $image, $path) {
+			if (!empty($title) && !empty($director) && !empty($description) && !empty($path)) {
+				
+				if ($publication == null || empty($publication))
+					$publication = date('Y-m-d\TH:i:sP');
+				
+				$book = $this->_client
+							->post('books')
+							->header('Content-Type', 'application/json')
+							->param(array(
+									'title' => $title,
+									'author' => $director,
+									'description' => $description,
+									'publication' => $publication,
+									'image' => $image,
+									'path' => $path))
+							->run();
+
+				if ($book != null && !($book instanceof RestException))
+					return true;
+			}
+			
+			return false;
+		}
+		
+		public function add($uuid) {
+			if (!empty($uuid)) {
+				$book = $this->_client
+							->post('books/'.$uuid)
+							->run();
+					
+				if ($book != null && !($book instanceof RestException))
+					return true;
+			}
+			
+			return false;
+		}
+		
+		public function delete($uuid) {
+			if (!empty($uuid)) {
+				$book = $this->_client
+							->delete('books/'.$uuid)
+							->run();
+					
+				if ($book != null && !($book instanceof RestException))
+					return true;
+			}
+			
+			return false;
 		}
 		
 		public function getBooks() {
-			try {
-				$books = $this->_client
-						->param('token', $_SESSION['token'])
+			$books = $this->_client
+						->get('books')
 						->run();
+				
+			if ($books != null && !($books instanceof RestException))
+				return json_decode($books);
 						
-				return $books != null && !($books instanceof RestException)
-						? array(json_decode($books))
-						: null;
-			
-			} catch (RestException $e) {
-				echo $e->getStatus();
-			}
+			return null;
 		}
 		
-		public function getBooksByUser($uuid) {
-			try {
+		public function getPublicBooks($uuid) {
+			if (!empty($uuid)) {
 				$books = $this->_client
-						->get('users/books')
-						->param('uuid', $uuid)
+						->get('users/'.$uuid.'/books')
 						->run();
 						
-				return $books != null && !($books instanceof RestException)
-						? array(json_decode($books))
-						: null;
-			
-			} catch (RestException $e) {
-				echo $e->getStatus();
+				if ($books != null && !($books instanceof RestException))
+						return json_decode($books);	
 			}
+			
+			return null;
 		}
 	}
 ?>

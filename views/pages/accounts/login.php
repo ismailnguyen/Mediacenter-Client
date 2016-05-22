@@ -1,7 +1,7 @@
 <div class="inputs">
 	<h5>Sign in to continue to your account.</h5>
 	
-	<form action="" method="post">
+	<form action="./?controller=accounts&action=login" method="POST">
 
 		<div class="container">
 			<input type="email" name="email" value='' maxlength="50" size="30" placeholder="E-mail"/><br/>
@@ -19,6 +19,5 @@
 
 	<div id="bottom">
 	  <a href="?controller=accounts&action=register">Create an account</a>
-	  <a class="right_a" href="?controller=accounts&action=forgot">Forgot password</a>
 	</div>
 </div>

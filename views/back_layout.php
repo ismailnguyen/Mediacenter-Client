@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		
@@ -24,6 +24,7 @@
 		<script type="text/javascript" src="./scripts/modal.js"></script>
 		<script type="text/javascript" src="./scripts/player/jquery.jplayer.min.js"></script>
 		<script type="text/javascript" src="./scripts/player/jplayer.playlist.min.js"></script>
+		<script type="text/javascript" src="./scripts/main.js"></script>
 	</head>
 
 	<body>
@@ -33,24 +34,60 @@
 				<!-- Sidebar -->
 				<ul id="sidebar" class="">
 					
-					<li id="search-bar" class="frost">
-						<span class="entypo-search"></span>
-						<input type="text" name="search" placeholder="Find ...">
-					</li>
+					<?php
+						if (isset($_GET['controller'])
+							&& ($_GET['controller'] == 'musics'
+								|| $_GET['controller'] == 'films'
+								|| $_GET['controller'] == 'books')) 
+						{
+							echo '<li id="search-bar" class="frost">';
+								echo '<span class="entypo-search"></span>';
+								echo '<input type="text" id="searchbox" name="search" placeholder="Find ...">';
+							echo '</li>';
+						}
+					?>
+					
 					<li>
 						<a class="entypo-video" href="./?controller=films"><span>Films</span></a>
 					</li>
 					<li>
-						<a class="entypo-music" href="./?controller=musics"><span>Musics</span></a>
+						<a id="link-musics" class="entypo-music"><span>Musics</span></a>
 					</li>
+					
+					<?php
+						$unrollMusic = isset($_GET['controller']) && !isset($_GET['u']) && $_GET['controller'] == 'musics' ? '' : 'display: none;';
+					?>
+					<li>
+						<a id="link-albums" class="entypo-list" style="<?php echo $unrollMusic; ?> padding-left: 50px;" href="./?controller=musics"><span>Albums</span></a>
+					</li>
+					<li>
+						<a id="link-songs" class="entypo-list" style="<?php echo $unrollMusic; ?> padding-left: 50px;" href="./?controller=musics&action=songs"><span>Songs</span></a>
+					</li>
+					
 					<li>
 						<a class="entypo-book" href="./?controller=books"><span>Books</span></a>
 					</li>
 					
 					<li id="sidebar-footer">
 						<a class="entypo-logout" href="./?controller=accounts&action=logout"></a>
-						<a class="entypo-cog" href="./?controller=accounts&action=settings"></a>
+						<!-- <a class="entypo-cog" href="./?controller=accounts&action=settings"></a> -->
 						<a class="entypo-home" href="./?controller=accounts"></a>
+						
+						<?php
+							if (isset($_GET['controller'])
+								&& !isset($_GET['u'])
+								&& ($_GET['controller'] == 'musics'
+									|| $_GET['controller'] == 'films'
+									|| $_GET['controller'] == 'books')) {
+					
+								echo '<a class="entypo-plus new-item-btn"></a>';
+						
+							} else {
+						
+								echo '<a class="entypo-user" href="./?controller=accounts&action=users"></a>';
+						
+							}
+						?>
 					</li>
 				</ul>
 			</div>

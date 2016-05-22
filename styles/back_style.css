@@ -50,17 +50,6 @@ a:focus {
 	font-family: 'entypo', sans-serif;
 }
 
-#main-container {
-	padding-top: 10px;
-}
-
-.main-board {
-	background: rgba(0, 0, 0, .7);
-    padding: 20px;
-    margin: 20px;
-    color: #FFF;
-}
-
 #sidebar {
 	position: fixed;
 	left: 0;
@@ -126,7 +115,7 @@ a:focus {
 }
 
 #sidebar-footer a {
-	margin: 20px;
+	margin: 7px;
 	padding: 7px 20px 7px 20px;
 	display: inline;
 }
@@ -168,6 +157,8 @@ a:focus {
     border-radius: 4px;
     -webkit-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
+	width: 100%;
+	height: 100%;
 }
 
 #grid .grid-element .element-title{
@@ -252,9 +243,9 @@ textarea::-webkit-input-placeholder, textarea.form-control::-webkit-input-placeh
 
 
 button {
-	width: 100%;
+	width: 235px;
 	height: 50px;
-    margin: 0;
+    margin: 10px;
     padding: 0 20px;
     vertical-align: middle;
     background: #399599;
@@ -277,3 +268,19 @@ button:active { outline: 0; opacity: 0.6; color: #fff; -moz-box-shadow: none; -w
 button:focus { outline: 0; opacity: 0.6; background: #399599; color: #fff; }
 
 button:active:focus, button.btn.active:focus { outline: 0; opacity: 0.6; background: #399599; color: #fff; }
+
+#main-container {
+	padding-top: 10px;
+}
+
+.main-board {
+	background: rgba(0, 0, 0, .7);
+    padding: 20px;
+	padding-left: 40px;
+    margin: 20px;
+    color: #FFF;
+}
+
+.main-board input {
+	margin: 10px;
+}
